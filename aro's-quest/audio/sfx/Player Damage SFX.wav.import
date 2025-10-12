@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ca8gylqx24ay0"
+path="res://.godot/imported/Player Damage SFX.wav-1200365cdb5b3afb9589918f1e252751.sample"
+
+[deps]
+
+source_file="res://audio/sfx/Player Damage SFX.wav"
+dest_files=["res://.godot/imported/Player Damage SFX.wav-1200365cdb5b3afb9589918f1e252751.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
