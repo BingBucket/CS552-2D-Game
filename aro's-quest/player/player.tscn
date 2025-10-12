@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpgvfmb7pjeeg"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_08rkv"]
+[ext_resource type="Script" uid="uid://b3jpf7hh71yiv" path="res://player/player.gd" id="1_08rkv"]
 [ext_resource type="Texture2D" uid="uid://c2bsusyu7hynn" path="res://sprites/frog_idle.png" id="2_gqm1n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qehpd"]
