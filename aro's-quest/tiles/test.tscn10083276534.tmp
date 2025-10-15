@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm14m323h3e7h"]
+
+[ext_resource type="Script" uid="uid://bv5f0bepwgjuy" path="res://tiles/test.gd" id="1_jtiyf"]
+[ext_resource type="PackedScene" uid="uid://bpgvfmb7pjeeg" path="res://player/player.tscn" id="2_fs8sc"]
+[ext_resource type="PackedScene" uid="uid://4owi0t010p0h" path="res://tiles/river_tiles.tscn" id="3_fs8sc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_jtiyf")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("3_fs8sc")]
+tile_map_data = PackedByteArray(0, 0, 1, 0, 1, 0, 10, 0, 0, 0, 0, 0, 1, 0)
+
+[node name="player" parent="." instance=ExtResource("2_fs8sc")]
+position = Vector2(32, 32)
