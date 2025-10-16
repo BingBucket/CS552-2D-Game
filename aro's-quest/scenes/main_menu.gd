@@ -26,7 +26,7 @@ func _on_start_pressed() -> void:
 		await ui_sfx.finished
 	
 	# Load first level
-	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level_1.tscn")
 
 func _on_quit_pressed() -> void:
 	# Play UI click sound
