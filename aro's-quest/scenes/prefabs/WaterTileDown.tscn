@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://bkobuqplffcj5"]
+
+[ext_resource type="Script" uid="uid://d11bpjl2xs2ap" path="res://scripts/tiles/WaterDown.gd" id="1_yup0n"]
+[ext_resource type="Texture2D" uid="uid://caw6bbjfuksty" path="res://sprites/river_down.png" id="2_yup0n"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2hbe"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myb4j"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rfvx"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf05d"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rkqe"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qqbl"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvt31"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuqds"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv1sy"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p01e"]
+atlas = ExtResource("2_yup0n")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csxf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2hbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myb4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rfvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf05d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rkqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qqbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvt31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuqds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv1sy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p01e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="WaterTileDown" type="Node2D" groups=["Water"]]
+script = ExtResource("1_yup0n")
+
+[node name="CurrentArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CurrentArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_csxf7")
