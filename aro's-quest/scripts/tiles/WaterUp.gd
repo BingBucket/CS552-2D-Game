@@ -1,16 +1,15 @@
 extends Node2D
-class_name WaterTile
 
 # Water tile that applies current force to player
 # Use Area2D to detect player and apply velocity
 
-@export var current_direction: Vector2 = Vector2.RIGHT  # Should be normalized
+@export var current_direction: Vector2 = Vector2.UP # Should be normalized
 @export var speed: float = 80.0
 @export var visual_flow_speed: float = 1.0  # For animated water texture
-
 # Node references
 @onready var current_area: Area2D = $CurrentArea
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var variant_name: String = ""
 
 # Bodies currently in water
 var bodies_in_current: Array[Node] = []
@@ -20,7 +19,6 @@ func _ready() -> void:
 	
 	# Process BEFORE player to ensure velocity is set before player moves
 	process_physics_priority = -10
-	
 	# Normalize direction
 	current_direction = current_direction.normalized()
 	
@@ -35,6 +33,24 @@ func _ready() -> void:
 	if sprite:
 		sprite.play("default")
 
+#func _read_tileset_metadata() -> void:
+	#var tilemap := _find_parent_tilemap()
+	#if not tilemap:
+		#return
+	#var cell = tilemap.local_to_map(global_position)
+	#var tile_id = tilemap.get_cell_tile_data(cell)
+	#var meta = tilemap.tile_set.tile_get_metadata(tile_id)
+	#print(cell)
+	#print(tile_id)
+	#print(meta)
+	#
+#func _find_parent_tilemap() -> TileMapLayer:
+	#var node:= get_parent()
+	#while node:
+		#if node is TileMapLayer:
+			#return node
+		#node = node.get_parent()
+	#return null
 func _physics_process(delta: float) -> void:
 	"""
 	Apply current to all bodies in the water.
@@ -45,6 +61,7 @@ func _physics_process(delta: float) -> void:
 
 func apply_current_to(body: Node) -> void:
 	"""Apply water current to a body."""
+	await get_tree().create_timer(0.2).timeout
 	if not is_instance_valid(body):
 		return
 	

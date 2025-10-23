@@ -14,11 +14,14 @@ signal goal_denied(player: Node, reason: String)
 
 # State
 var is_active: bool = true
-
+var time_start = 0
+var time_end = 0
+var final_time = 0
 # Node references
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	time_start = Time.get_unix_time_from_system()
 	add_to_group("Goal")
 	
 	# Connect signals
@@ -67,8 +70,11 @@ func _check_completion(player: Node) -> void:
 func _complete_level(player: Node) -> void:
 	"""Level completed successfully."""
 	is_active = false  # Prevent multiple triggers
-	
-	goal_reached.emit(player)
+	time_end = Time.get_unix_time_from_system()
+	var elapsed_time = int(time_end - time_start)
+	final_time = format_elapsed_time(elapsed_time)
+	print(final_time)
+	GameManager.play_time = final_time
 	
 	# TODO: Play victory sound
 	
@@ -103,3 +109,9 @@ func deactivate() -> void:
 	# TODO: Visual change (grey out)
 	if sprite:
 		sprite.modulate = Color(0.5, 0.5, 0.5, 0.7)
+
+func format_elapsed_time(seconds: int) -> String:
+	var hours = seconds / 3600
+	var minutes = (seconds % 3600) / 60
+	var secs = seconds % 60
+	return "%02d:%02d:%02d" % [hours, minutes, secs]

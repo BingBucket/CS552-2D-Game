@@ -16,8 +16,8 @@ var is_collected: bool = false
 var initial_position: Vector2
 
 # Node references
-@onready var sprite: Sprite2D = $Sprite
-
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 func _ready() -> void:
 	add_to_group("Collectible")
 	
@@ -28,7 +28,7 @@ func _ready() -> void:
 	initial_position = position
 	
 	# TODO: Start glow/pulse animation
-	_start_idle_animation()
+	sprite.play("default")
 
 func _process(delta: float) -> void:
 	"""Floating animation."""
@@ -58,6 +58,10 @@ func _collect(collector: Node) -> void:
 	
 	# TODO: Play collection sound
 	# TODO: Collection particle effect
+	audioplayer.play()
+	sprite.play("collected")
+	await get_tree().create_timer(0.75).timeout
+	sprite.hide()
 	
 
 func _start_idle_animation() -> void:
@@ -68,3 +72,9 @@ func _start_idle_animation() -> void:
 	# tween.tween_property(sprite, "modulate:a", 0.6, 0.8)
 	# tween.tween_property(sprite, "modulate:a", 1.0, 0.8)
 	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	"""Detect player collection."""
+	if body.is_in_group("Player") or body.get_parent().is_in_group("Player"):
+		_collect(body)

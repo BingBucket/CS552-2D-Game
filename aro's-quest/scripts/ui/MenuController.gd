@@ -6,13 +6,14 @@ class_name MenuController
 @export var menu_type: String = "main"  # "main", "pause", "win", "lose"
 
 # Common buttons (not all menus have all buttons)
-@onready var start_button: Button = $VBoxContainer/StartButton if has_node("VBoxContainer/StartButton") else null
-@onready var resume_button: Button = $VBoxContainer/ResumeButton if has_node("VBoxContainer/ResumeButton") else null
-@onready var restart_button: Button = $VBoxContainer/RestartButton if has_node("VBoxContainer/RestartButton") else null
-@onready var next_level_button: Button = $VBoxContainer/NextLevelButton if has_node("VBoxContainer/NextLevelButton") else null
-@onready var settings_button: Button = $VBoxContainer/SettingsButton if has_node("VBoxContainer/SettingsButton") else null
-@onready var main_menu_button: Button = $VBoxContainer/MainMenuButton if has_node("VBoxContainer/MainMenuButton") else null
-@onready var quit_button: Button = $VBoxContainer/QuitButton if has_node("VBoxContainer/QuitButton") else null
+@onready var start_button: Button = $ColorRect/VBoxContainer/StartButton if has_node("ColorRect/VBoxContainer/StartButton") else null
+@onready var resume_button: Button = $ColorRect/VBoxContainer/ResumeButton if has_node("ColorRect/VBoxContainer/ResumeButton") else null
+@onready var restart_button: Button = $ColorRect/VBoxContainer/RestartButton if has_node("ColorRect/VBoxContainer/RestartButton") else null
+@onready var next_level_button: Button = $ColorRect/VBoxContainer/NextLevelButton if has_node("ColorRect/VBoxContainer/NextLevelButton") else null
+@onready var settings_button: Button = $ColorRect/VBoxContainer/SettingsButton if has_node("ColorRect/VBoxContainer/SettingsButton") else null
+@onready var main_menu_button: Button = $ColorRect/VBoxContainer/MainMenuButton if has_node("ColorRect/VBoxContainer/MainMenuButton") else null
+@onready var quit_button: Button = $ColorRect/VBoxContainer/QuitButton if has_node("ColorRect/VBoxContainer/QuitButton") else null
+@onready var timer_label: Label = $ColorRect/VBoxContainer/TimerLabel if has_node("ColorRect/VBoxContainer/TimerLabel") else null
 
 func _ready() -> void:
 	# Connect buttons that exist
@@ -30,10 +31,14 @@ func _ready() -> void:
 		main_menu_button.pressed.connect(go_to_main_menu)
 	if quit_button:
 		quit_button.pressed.connect(quit_game)
-	
+	if timer_label:
+		timer_label.text = "Time: " + GameManager.play_time
 	# Setup based on menu type
 	_setup_menu()
 
+func update_text():
+	print("Signal received")
+	timer_label.text = GameManager.play_time
 func _setup_menu() -> void:
 	"""Initialize menu based on type."""
 	match menu_type:

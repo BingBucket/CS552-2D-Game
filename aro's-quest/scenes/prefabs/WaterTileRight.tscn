@@ -1,49 +1,49 @@
 [gd_scene load_steps=15 format=3 uid="uid://water001"]
 
-[ext_resource type="Script" uid="uid://cditipgbueclp" path="res://scripts/tiles/WaterCurrent.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bplmgxg1qwi0v" path="res://sprites/river_right.png" id="2_8ycxv"]
+[ext_resource type="Script" uid="uid://cditipgbueclp" path="res://scripts/tiles/WaterRight.gd" id="1_phghn"]
+[ext_resource type="Texture2D" uid="uid://bplmgxg1qwi0v" path="res://sprites/river_right.png" id="2_c0k5x"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(63, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_up84h"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmgh4"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wssl5"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qryka"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvbjk"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybsei"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm6kn"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwyj6"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dh2jp"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4vok"]
-atlas = ExtResource("2_8ycxv")
+atlas = ExtResource("2_c0k5x")
 region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_csxf7"]
@@ -84,8 +84,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="WaterTile" type="Node2D" groups=["Water"]]
-script = ExtResource("1")
+[node name="WaterTileRight" type="Node2D" groups=["Water"]]
+script = ExtResource("1_phghn")
 
 [node name="CurrentArea" type="Area2D" parent="."]
 collision_layer = 0

@@ -21,6 +21,8 @@ var total_fireflies: int = 0  # Set by level when loaded
 var level_time_limit: float = 0.0  # 0 = no time limit
 var time_remaining: float = 0.0
 var timer_active: bool = false
+#play_time during a level
+var play_time: String = ''
 
 ## Whirlpool Registry
 var whirlpool_pairs: Dictionary = {}  # pair_id -> Array[WhirlpoolPortal]
@@ -228,6 +230,7 @@ func reset_game_state() -> void:
 
 func _show_win_screen() -> void:
 	"""Show level completion screen."""
+	queue_free()
 	var win_scene = preload("res://scenes/ui/Win.tscn")
 	var win_screen = win_scene.instantiate()
 	get_tree().current_scene.add_child(win_screen)

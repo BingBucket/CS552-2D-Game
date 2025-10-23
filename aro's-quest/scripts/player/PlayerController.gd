@@ -5,7 +5,7 @@ class_name PlayerController
 # Movement comes from water currents and grappling
 
 @export var max_hearts: int = 3
-
+@export var snapped_current_tile = false
 # Signals
 signal collected_firefly(count: int)
 signal hurt(amount: int)

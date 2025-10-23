@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://cemrw2wqrkobt"]
+
+[ext_resource type="Script" uid="uid://ct48n1fkhjkee" path="res://scripts/tiles/WaterUp.gd" id="1_fji3t"]
+[ext_resource type="Texture2D" uid="uid://c0guyh0x63unw" path="res://sprites/river_up.png" id="2_fji3t"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n6fs"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb3st"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc567"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssqxx"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbr0k"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxjji"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuk4n"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6cj5"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65gtw"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t7g8"]
+atlas = ExtResource("2_fji3t")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csxf7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n6fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb3st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc567")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssqxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbr0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxjji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuk4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6cj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65gtw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t7g8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="WaterTileUp" type="Node2D" groups=["Water"]]
+script = ExtResource("1_fji3t")
+
+[node name="CurrentArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CurrentArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_csxf7")
+frame_progress = 0.9707583

@@ -18,7 +18,6 @@ var grappled_by: Node = null
 
 func _ready() -> void:
 	add_to_group("Anchor")
-	
 	# Configure collision for grapple detection
 	# Layer 16 (bit 4) for anchors, detected by GrappleSensor
 	collision_layer = 16

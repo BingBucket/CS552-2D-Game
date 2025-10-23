@@ -23,6 +23,7 @@ class_name LevelController
 @onready var tilemap: TileMap = $TileMap if has_node("TileMap") else null
 
 func _ready() -> void:
+	print(global_position)
 	# Setup level
 	_initialize_level()
 	
@@ -83,24 +84,24 @@ func get_whirlpool_pairs() -> Dictionary:
 	return {}
 
 # Helper functions for level design
-
-func add_firefly_at(pos: Vector2) -> void:
-	"""Add firefly at position (useful for testing)."""
-	var firefly_scene = preload("res://scenes/prefabs/Firefly.tscn")
-	var firefly = firefly_scene.instantiate()
-	firefly.global_position = pos
-	props_container.add_child(firefly) if props_container else add_child(firefly)
-
-func add_obstacle_at(pos: Vector2, type: String = "rock") -> void:
-	"""Add obstacle at position."""
-	var obstacle_scene
-	match type:
-		"rock":
-			obstacle_scene = preload("res://scenes/prefabs/RockTile.tscn")
-		_:
-			push_warning("Unknown obstacle type: " + type)
-			return
-	
-	var obstacle = obstacle_scene.instantiate()
-	obstacle.global_position = pos
-	props_container.add_child(obstacle) if props_container else add_child(obstacle)
+#
+#func add_firefly_at(pos: Vector2) -> void:
+	#"""Add firefly at position (useful for testing)."""
+	#var firefly_scene = preload("res://scenes/prefabs/Firefly.tscn")
+	#var firefly = firefly_scene.instantiate()
+	#firefly.global_position = pos
+	#props_container.add_child(firefly) if props_container else add_child(firefly)
+#
+#func add_obstacle_at(pos: Vector2, type: String = "rock") -> void:
+	#"""Add obstacle at position."""
+	#var obstacle_scene
+	#match type:
+		#"rock":
+			#obstacle_scene = preload("res://scenes/prefabs/RockTile.tscn")
+		#_:
+			#push_warning("Unknown obstacle type: " + type)
+			#return
+	#
+	#var obstacle = obstacle_scene.instantiate()
+	#obstacle.global_position = pos
+	#props_container.add_child(obstacle) if props_container else add_child(obstacle)
