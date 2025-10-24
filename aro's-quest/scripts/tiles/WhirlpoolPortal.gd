@@ -9,6 +9,7 @@ class_name WhirlpoolPortal
 @export var teleport_cooldown: float = 0.5  # Prevent immediate re-teleport
 @export var stun_duration: float = 0.3  # Brief control disable after teleport
 
+
 # Signals
 signal player_entered(player: Node)
 signal player_teleported(player: Node, destination: WhirlpoolPortal)
@@ -18,7 +19,7 @@ var teleport_ready: bool = true
 var paired_whirlpool: WhirlpoolPortal = null
 
 # Node references
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	add_to_group("Portal")
@@ -32,7 +33,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	
 	# TODO: Start whirlpool spin animation
-	_start_spin_animation()
+	sprite.play()
 
 func _on_area_entered(area: Area2D) -> void:
 	"""Detect player via Area2D (grapple sensor, etc.)."""
@@ -110,14 +111,6 @@ func _start_cooldown_timer() -> void:
 func _reset_teleport() -> void:
 	"""Reset teleport availability."""
 	teleport_ready = true
-
-func _start_spin_animation() -> void:
-	"""Animate whirlpool spinning."""
-	# TODO: Rotate sprite or animate shader
-	# var tween = create_tween()
-	# tween.set_loops()
-	# tween.tween_property(sprite, "rotation", TAU, 2.0)
-	pass
 
 func set_pair_id(new_id: String) -> void:
 	"""Change pair ID at runtime (for dynamic puzzles)."""
