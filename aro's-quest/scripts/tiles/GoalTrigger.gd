@@ -22,7 +22,6 @@ var final_time = 0
 
 func _ready() -> void:
 	time_start = Time.get_unix_time_from_system()
-	final_time = 0
 	add_to_group("Goal")
 	
 	# Connect signals

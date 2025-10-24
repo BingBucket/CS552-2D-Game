@@ -8,7 +8,7 @@ class_name WhirlpoolPortal
 @export var teleport_inertia_preserve: bool = true  # Keep player velocity after teleport
 @export var teleport_cooldown: float = 0.5  # Prevent immediate re-teleport
 @export var stun_duration: float = 0.3  # Brief control disable after teleport
-
+@export var exit_movement_speed: float = 150.0  # Speed to move in entry direction until reaching another tile
 
 # Signals
 signal player_entered(player: Node)
@@ -17,12 +17,17 @@ signal player_teleported(player: Node, destination: WhirlpoolPortal)
 # State
 var teleport_ready: bool = true
 var paired_whirlpool: WhirlpoolPortal = null
+var entry_direction: Vector2 = Vector2.ZERO  # Direction player entered from
+var players_in_exit_movement: Array[CharacterBody2D] = []  # Players currently being moved by exit system
 
 # Node references
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
 	add_to_group("Portal")
+	
+	# Process BEFORE water tiles to ensure our movement takes priority
+	process_physics_priority = -20
 	
 	# Register with GameManager
 	if GameManager:
@@ -33,7 +38,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	
 	# TODO: Start whirlpool spin animation
-	sprite.play()
+	_start_spin_animation()
 
 func _on_area_entered(area: Area2D) -> void:
 	"""Detect player via Area2D (grapple sensor, etc.)."""
@@ -63,17 +68,15 @@ func _attempt_teleport(player: Node) -> void:
 	teleport_ready = false
 	paired_whirlpool.teleport_ready = false
 	
-	# Store velocity before teleport
-	var player_velocity = Vector2.ZERO
-	if teleport_inertia_preserve and player.has("velocity"):
-		player_velocity = player.velocity
+	# Calculate entry direction (from player to this whirlpool)
+	entry_direction = (global_position - player.global_position).normalized()
 	
 	# Teleport player
 	player.global_position = paired_whirlpool.global_position
 	
-	# Restore velocity if preserving inertia
-	if teleport_inertia_preserve and player.has("velocity"):
-		player.velocity = player_velocity
+	# Start continuous movement in entry direction until reaching another tile
+	if player is CharacterBody2D:
+		_start_exit_movement(player)
 	
 	# Emit signals
 	player_entered.emit(player)
@@ -108,9 +111,59 @@ func _start_cooldown_timer() -> void:
 	var timer = get_tree().create_timer(teleport_cooldown)
 	timer.timeout.connect(_reset_teleport)
 
+func _start_exit_movement(player: CharacterBody2D) -> void:
+	"""Start continuous movement in entry direction until player reaches another tile."""
+	if player not in players_in_exit_movement:
+		players_in_exit_movement.append(player)
+	
+	# Start checking for tile collision
+	_start_tile_detection(player)
+
 func _reset_teleport() -> void:
 	"""Reset teleport availability."""
 	teleport_ready = true
+
+func _start_tile_detection(player: CharacterBody2D) -> void:
+	"""Start checking if player has reached another tile."""
+	# Use a timer to check periodically
+	var timer = get_tree().create_timer(0.1)  # Check every 0.1 seconds
+	timer.timeout.connect(_check_tile_reached.bind(player))
+
+func _check_tile_reached(player: CharacterBody2D) -> void:
+	"""Check if player has moved far enough from whirlpool to reach another tile."""
+	if not player or not is_instance_valid(player):
+		players_in_exit_movement.erase(player)
+		return
+	
+	# Check if player is far enough from the exit whirlpool
+	var distance_from_exit = player.global_position.distance_to(paired_whirlpool.global_position)
+	
+	# If player is far enough away, stop the forced movement
+	if distance_from_exit > 50.0:  # 50 pixels should be enough to reach another tile
+		_stop_exit_movement(player)
+		return
+	
+	# Apply movement using the same system as water tiles
+	if player.has_method("apply_external_velocity"):
+		player.apply_external_velocity(entry_direction * exit_movement_speed)
+	
+	# Schedule next check
+	var timer = get_tree().create_timer(0.1)
+	timer.timeout.connect(_check_tile_reached.bind(player))
+
+func _stop_exit_movement(player: CharacterBody2D) -> void:
+	"""Stop the forced exit movement and let normal game mechanics take over."""
+	if player and is_instance_valid(player):
+		# Don't set velocity to zero - let water tiles take over naturally
+		players_in_exit_movement.erase(player)
+
+func _start_spin_animation() -> void:
+	"""Animate whirlpool spinning."""
+	# TODO: Rotate sprite or animate shader
+	# var tween = create_tween()
+	# tween.set_loops()
+	# tween.tween_property(sprite, "rotation", TAU, 2.0)
+	pass
 
 func set_pair_id(new_id: String) -> void:
 	"""Change pair ID at runtime (for dynamic puzzles)."""
