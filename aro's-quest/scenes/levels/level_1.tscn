@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://65eu3bxan3bf" path="res://scenes/prefabs/main_river_tiles.tres" id="2_oc4kc"]
 [ext_resource type="AudioStream" uid="uid://knbsdjpngmg5" path="res://audio/music/aroquest_level_theme.mp3" id="3_nsrm0"]
 
-[node name="level_1_NEW" type="Node2D"]
+[node name="level_1" type="Node2D"]
 process_mode = 3
 script = ExtResource("1")
 
@@ -26,4 +26,4 @@ stream = ExtResource("3_nsrm0")
 autoplay = true
 
 [connection signal="body_entered" from="Collectibles/Firefly" to="Collectibles/Firefly" method="_on_body_entered"]
-[connection signal="body_entered" from="Collectibles/@Area2D@44850" to="Collectibles/@Area2D@44850" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectibles/@Area2D@26788" to="Collectibles/@Area2D@26788" method="_on_body_entered"]

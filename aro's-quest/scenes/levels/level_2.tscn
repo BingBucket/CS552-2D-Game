@@ -31,4 +31,4 @@ stream = ExtResource("3_ra442")
 autoplay = true
 
 [connection signal="body_entered" from="Collectibles/Firefly" to="Collectibles/Firefly" method="_on_body_entered"]
-[connection signal="body_entered" from="Collectibles/@Area2D@45501" to="Collectibles/@Area2D@45501" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectibles/@Area2D@33991" to="Collectibles/@Area2D@33991" method="_on_body_entered"]

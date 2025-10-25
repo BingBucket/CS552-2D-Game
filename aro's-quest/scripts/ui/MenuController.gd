@@ -78,11 +78,14 @@ func restart_level() -> void:
 		get_tree().reload_current_scene()
 
 func next_level() -> void:
+	print("next")
 	"""Go to next level (from win screen)."""
 	if GameManager:
+		print("exists")
 		GameManager.next_level()
 	else:
 		push_warning("GameManager not available for level progression")
+		print("nuh uh")
 
 func open_settings() -> void:
 	"""Open settings menu."""

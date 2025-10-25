@@ -21,4 +21,4 @@ process_mode = 1
 position = Vector2(32, 96)
 
 [connection signal="body_entered" from="Collectibles/Firefly" to="Collectibles/Firefly" method="_on_body_entered"]
-[connection signal="body_entered" from="Collectibles/@Area2D@109236" to="Collectibles/@Area2D@109236" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectibles/@Area2D@26529" to="Collectibles/@Area2D@26529" method="_on_body_entered"]

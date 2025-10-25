@@ -38,6 +38,7 @@ signal game_won()
 
 func _ready() -> void:
 	# Initialize game state
+	print("game manager exists")
 	reset_game_state()
 
 func _process(delta: float) -> void:
@@ -231,7 +232,6 @@ func reset_game_state() -> void:
 
 func _show_win_screen() -> void:
 	"""Show level completion screen."""
-	queue_free()
 	var win_scene = preload("res://scenes/ui/Win.tscn")
 	var win_screen = win_scene.instantiate()
 	get_tree().current_scene.add_child(win_screen)
