@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://whirlpool001"]
+
+[ext_resource type="Script" uid="uid://76gwfccvq5er" path="res://scripts/tiles/WhirlpoolPortal.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c32dl87tlvi7a" path="res://sprites/river_portal.png" id="2_dkrum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkrum"]
+size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibwtn"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0mic"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1x7q"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3ult"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymbc"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftnfs"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cclbk"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efswa"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj4no"]
+atlas = ExtResource("2_dkrum")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhm75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibwtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0mic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1x7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ult")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fymbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftnfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cclbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efswa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj4no")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Whirlpool" type="Area2D" groups=["Portal"]]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dkrum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hhm75")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cat8rojs0f680"]
+
+[ext_resource type="Script" uid="uid://c34063ft7nn4w" path="res://scripts/LevelController.gd" id="1"]
+[ext_resource type="TileSet" uid="uid://65eu3bxan3bf" path="res://scenes/prefabs/main_river_tiles.tres" id="2_u8naf"]
+
+[node name="LevelRoot" type="Node2D"]
+script = ExtResource("1")
+level_name = "Level Template"
+
+[node name="Collectibles" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_u8naf")
+
+[node name="Tiles" type="TileMapLayer" parent="Collectibles"]
+tile_set = ExtResource("2_u8naf")
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+position = Vector2(32, 32)
+gizmo_extents = 8.0
+
+[node name="LevelLogic" type="Node" parent="."]

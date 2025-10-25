@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=4 uid="uid://bjd6pnym5f2ca"]
+
+[ext_resource type="Script" uid="uid://c34063ft7nn4w" path="res://scripts/LevelController.gd" id="1_52kye"]
+[ext_resource type="TileSet" uid="uid://65eu3bxan3bf" path="res://scenes/prefabs/main_river_tiles.tres" id="1_8153q"]
+
+[node name="Node2D" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_52kye")
+
+[node name="Collectibles" type="TileMapLayer" parent="."]
+process_mode = 1
+tile_map_data = PackedByteArray("AAAFAAAAAAAAAAAACAAAAAQAAAAAAAAACAA=")
+tile_set = ExtResource("1_8153q")
+
+[node name="Tiles" type="TileMapLayer" parent="Collectibles"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAACgAAAAEAAAAAAAAACgAAAAIAAAAAAAAACgAAAAMAAAAAAAAACgAAAAQAAAAAAAAADAABAAQAAAAAAAAADAACAAQAAAAAAAAADAADAAQAAAAAAAAADAAEAAQAAAAAAAAADAAFAAQAAAAAAAAADQAFAAMAAAAAAAAADQAFAAIAAAAAAAAADQAFAAEAAAAAAAAADQAFAAAAAAAAAAAACwAEAAAAAAAAAAAACwADAAAAAAAAAAAACwACAAAAAAAAAAAACwAEAAMAAAAAAAAABQADAAMAAAAAAAAABQACAAMAAAAAAAAABQAEAAIAAAAAAAAAAQABAAAAAAAAAAAAAwA=")
+tile_set = ExtResource("1_8153q")
+
+[node name="PlayerStart" type="Marker2D" parent="."]
+process_mode = 1
+position = Vector2(32, 96)
+
+[connection signal="body_entered" from="Collectibles/Firefly" to="Collectibles/Firefly" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectibles/@Area2D@45541" to="Collectibles/@Area2D@45541" method="_on_body_entered"]

@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://65eu3bxan3bf"]
+
+[ext_resource type="PackedScene" uid="uid://cattail001" path="res://scenes/prefabs/CattailTile.tscn" id="1_amkg1"]
+[ext_resource type="PackedScene" uid="uid://goal001" path="res://scenes/prefabs/GoalTile.tscn" id="2_kuuee"]
+[ext_resource type="PackedScene" uid="uid://bkobuqplffcj5" path="res://scenes/prefabs/WaterTileDown.tscn" id="2_rmo8k"]
+[ext_resource type="PackedScene" uid="uid://rock001" path="res://scenes/prefabs/RockTile.tscn" id="3_emtu1"]
+[ext_resource type="PackedScene" uid="uid://cfefaihfqjhju" path="res://scenes/prefabs/WaterTileLeft.tscn" id="3_hmp1f"]
+[ext_resource type="PackedScene" uid="uid://water001" path="res://scenes/prefabs/WaterTileRight.tscn" id="4_ex4bd"]
+[ext_resource type="PackedScene" uid="uid://cemrw2wqrkobt" path="res://scenes/prefabs/WaterTileUp.tscn" id="5_dtyi8"]
+[ext_resource type="PackedScene" uid="uid://whirlpool001" path="res://scenes/prefabs/WhirlpoolTile.tscn" id="5_hmp1f"]
+[ext_resource type="PackedScene" uid="uid://firefly001" path="res://scenes/prefabs/Firefly.tscn" id="6_ex4bd"]
+[ext_resource type="PackedScene" uid="uid://player001" path="res://scenes/prefabs/Player.tscn" id="7_dtyi8"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_sgxpu"]
+scenes/1/scene = ExtResource("1_amkg1")
+scenes/3/scene = ExtResource("2_kuuee")
+scenes/5/scene = ExtResource("3_emtu1")
+scenes/7/scene = ExtResource("5_hmp1f")
+scenes/8/scene = ExtResource("6_ex4bd")
+scenes/9/scene = ExtResource("7_dtyi8")
+scenes/10/scene = ExtResource("2_rmo8k")
+scenes/11/scene = ExtResource("3_hmp1f")
+scenes/12/scene = ExtResource("4_ex4bd")
+scenes/13/scene = ExtResource("5_dtyi8")
+
+[resource]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "water_direction"
+custom_data_layer_0/type = 5
+sources/0 = SubResource("TileSetScenesCollectionSource_sgxpu")
