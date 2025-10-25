@@ -23,6 +23,7 @@ class_name LevelController
 @onready var player_start: Marker2D = $PlayerStart
 @onready var props_container: Node2D = $Props
 var paused = false
+var player
 func _ready() -> void:
 	pause_inst = pause_scene.instantiate()
 	add_child(pause_inst)
@@ -56,7 +57,7 @@ func _initialize_level() -> void:
 func _spawn_player() -> void:
 	"""Spawn player at PlayerStart position."""
 	var player_scene = preload("res://scenes/prefabs/Player.tscn")
-	var player = player_scene.instantiate()
+	player = player_scene.instantiate()
 	
 	if player_start:
 		player.global_position = player_start.global_position
@@ -91,11 +92,13 @@ func _process(_delta):
 	if Input.is_action_just_pressed("pause") and paused == false:
 		pause_inst.show()
 		get_tree().paused = true
+		player.hide()
 		paused = true
 		
 	elif Input.is_action_just_pressed("pause") and paused == true:
 		pause_inst.hide()
 		get_tree().paused = false
+		player.show()
 		paused = false
 # Helper functions for level design
 #

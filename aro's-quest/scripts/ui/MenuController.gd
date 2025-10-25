@@ -16,7 +16,6 @@ class_name MenuController
 @onready var timer_label: Label = $ColorRect/VBoxContainer/TimerLabel if has_node("ColorRect/VBoxContainer/TimerLabel") else null
 
 func _ready() -> void:
-	print(global_position)
 	# Connect buttons that exist
 	if start_button:
 		start_button.pressed.connect(start_game)
@@ -36,6 +35,7 @@ func _ready() -> void:
 		timer_label.text = "Time: " + GameManager.play_time
 	# Setup based on menu type
 	_setup_menu()
+	print(global_position)
 
 func update_text():
 	print("Signal received")
@@ -94,7 +94,7 @@ func open_settings() -> void:
 func go_to_main_menu() -> void:
 	"""Return to main menu."""
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 func quit_game() -> void:
 	"""Quit application."""
