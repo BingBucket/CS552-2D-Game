@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://player001"]
+[gd_scene load_steps=7 format=3 uid="uid://player001"]
 
 [ext_resource type="Script" uid="uid://m8uaib5i1400" path="res://scripts/player/PlayerController.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c2bsusyu7hynn" path="res://sprites/frog_idle.png" id="2_ok4up"]
+[ext_resource type="AudioStream" uid="uid://ugc37sqlqeua" path="res://audio/sfx/Player Grapple SFX.wav" id="4_2ad00"]
 [ext_resource type="Script" uid="uid://dcnmqncac3fq2" path="res://scripts/player/HealthSystem.gd" id="4_dnu5j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ok4up"]
@@ -34,3 +35,6 @@ default_color = Color(0.8, 0.6, 0.4, 1)
 
 [node name="HealthSystemComponent" type="Node" parent="."]
 script = ExtResource("4_dnu5j")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2ad00")

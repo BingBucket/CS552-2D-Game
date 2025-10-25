@@ -74,6 +74,7 @@ func next_level() -> void:
 	
 	# Load next level
 	var next_level_path = "res://scenes/levels/level_%d.tscn" % current_level_number
+	print(next_level_path)
 	if ResourceLoader.exists(next_level_path):
 		load_level(next_level_path)
 	else:

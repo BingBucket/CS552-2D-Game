@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://level1"]
+[gd_scene load_steps=8 format=3 uid="uid://shle276cs2uk"]
 
 [ext_resource type="Script" uid="uid://c34063ft7nn4w" path="res://scripts/LevelController.gd" id="1_o67qg"]
 [ext_resource type="TileSet" uid="uid://65eu3bxan3bf" path="res://scenes/prefabs/main_river_tiles.tres" id="2_0m27i"]

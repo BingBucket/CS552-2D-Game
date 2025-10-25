@@ -21,11 +21,11 @@ var entry_direction: Vector2 = Vector2.ZERO  # Direction player entered from
 var players_in_exit_movement: Array[CharacterBody2D] = []  # Players currently being moved by exit system
 
 # Node references
-@onready var sprite: Sprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
 	add_to_group("Portal")
-	
+	sprite.play()
 	# Process BEFORE water tiles to ensure our movement takes priority
 	process_physics_priority = -20
 	
@@ -36,9 +36,6 @@ func _ready() -> void:
 	# Connect signals
 	area_entered.connect(_on_area_entered)
 	body_entered.connect(_on_body_entered)
-	
-	# TODO: Start whirlpool spin animation
-	_start_spin_animation()
 
 func _on_area_entered(area: Area2D) -> void:
 	"""Detect player via Area2D (grapple sensor, etc.)."""
@@ -108,8 +105,8 @@ func _find_paired_whirlpool() -> WhirlpoolPortal:
 
 func _start_cooldown_timer() -> void:
 	"""Start cooldown before portal can be used again."""
-	var timer = get_tree().create_timer(teleport_cooldown)
-	timer.timeout.connect(_reset_teleport)
+	await get_tree().create_timer(teleport_cooldown).timeout
+	_reset_teleport()
 
 func _start_exit_movement(player: CharacterBody2D) -> void:
 	"""Start continuous movement in entry direction until player reaches another tile."""
@@ -122,6 +119,10 @@ func _start_exit_movement(player: CharacterBody2D) -> void:
 func _reset_teleport() -> void:
 	"""Reset teleport availability."""
 	teleport_ready = true
+	paired_whirlpool.teleport_ready = true
+	if GameManager:
+		GameManager.register_whirlpool(pair_id, self)
+	
 
 func _start_tile_detection(player: CharacterBody2D) -> void:
 	"""Start checking if player has reached another tile."""
@@ -156,14 +157,6 @@ func _stop_exit_movement(player: CharacterBody2D) -> void:
 	if player and is_instance_valid(player):
 		# Don't set velocity to zero - let water tiles take over naturally
 		players_in_exit_movement.erase(player)
-
-func _start_spin_animation() -> void:
-	"""Animate whirlpool spinning."""
-	# TODO: Rotate sprite or animate shader
-	# var tween = create_tween()
-	# tween.set_loops()
-	# tween.tween_property(sprite, "rotation", TAU, 2.0)
-	pass
 
 func set_pair_id(new_id: String) -> void:
 	"""Change pair ID at runtime (for dynamic puzzles)."""

@@ -31,6 +31,7 @@ var rope_length: float = 0.0
 @onready var grapple_line: Line2D = $GrappleLine
 @onready var grapple_point: Node2D = $GrapplePoint
 @onready var health_system = $Components/HealthSystem  # Optional if HealthSystem is separate
+@onready var player = $AudioStreamPlayer
 
 func _ready() -> void:
 	add_to_group("Player")
@@ -157,6 +158,7 @@ func attempt_grapple() -> void:
 
 func start_grapple(anchor: Node2D) -> void:
 	"""Begin grappling to anchor point."""
+	player.play()
 	is_grappling = true
 	rope_attached = true
 	rope_anchor = anchor.global_position if anchor else global_position

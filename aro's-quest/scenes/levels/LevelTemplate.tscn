@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cat8rojs0f680"]
+[gd_scene load_steps=4 format=3 uid="uid://ekpmjd2jgcdy"]
 
 [ext_resource type="Script" uid="uid://c34063ft7nn4w" path="res://scripts/LevelController.gd" id="1"]
 [ext_resource type="TileSet" uid="uid://65eu3bxan3bf" path="res://scenes/prefabs/main_river_tiles.tres" id="2_u8naf"]
+[ext_resource type="AudioStream" uid="uid://knbsdjpngmg5" path="res://audio/music/aroquest_level_theme.mp3" id="3_utwm8"]
 
 [node name="LevelRoot" type="Node2D"]
+process_mode = 3
 script = ExtResource("1")
 level_name = "Level Template"
 
 [node name="Collectibles" type="TileMapLayer" parent="."]
+process_mode = 1
 tile_set = ExtResource("2_u8naf")
 
 [node name="Tiles" type="TileMapLayer" parent="Collectibles"]
@@ -20,3 +23,7 @@ position = Vector2(32, 32)
 gizmo_extents = 8.0
 
 [node name="LevelLogic" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_utwm8")
+autoplay = true
