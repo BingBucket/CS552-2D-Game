@@ -16,6 +16,7 @@ class_name MenuController
 @onready var timer_label: Label = $ColorRect/VBoxContainer/TimerLabel if has_node("ColorRect/VBoxContainer/TimerLabel") else null
 
 func _ready() -> void:
+	print(global_position)
 	# Connect buttons that exist
 	if start_button:
 		start_button.pressed.connect(start_game)
@@ -44,7 +45,7 @@ func _setup_menu() -> void:
 	match menu_type:
 		"pause":
 			# Pause menu specific setup
-			get_tree().paused = true
+			show()
 		"win":
 			# Victory screen setup
 			# TODO: Show stats, time, fireflies collected
@@ -66,7 +67,7 @@ func start_game() -> void:
 func resume_game() -> void:
 	"""Resume from pause menu."""
 	get_tree().paused = false
-	queue_free()  # Remove pause menu
+	hide()  # Remove pause menu
 
 func restart_level() -> void:
 	"""Restart current level."""

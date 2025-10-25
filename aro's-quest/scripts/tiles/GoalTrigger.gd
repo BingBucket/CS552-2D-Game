@@ -7,7 +7,6 @@ class_name GoalTrigger
 @export var require_all_fireflies: bool = true
 @export var required_fireflies: int = 0  # 0 = use level's total_fireflies from GameManager
 @export var auto_advance: bool = true  # Automatically go to next level
-
 # Signals
 signal goal_reached(player: Node)
 signal goal_denied(player: Node, reason: String)

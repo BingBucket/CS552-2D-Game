@@ -16,14 +16,17 @@ class_name LevelController
 @export var total_fireflies_in_level: int = 0  # Auto-count if 0
 @export var time_limit: float = 0.0  # Seconds, 0 = no limit
 @export var auto_count_fireflies: bool = true
-
+@onready var tileset: TileMapLayer = $Collectibles
+@onready var pause_scene = preload("res://scenes/ui/PauseMenu.tscn")
+@onready var pause_inst
 # Node references
 @onready var player_start: Marker2D = $PlayerStart
 @onready var props_container: Node2D = $Props
-@onready var tilemap: TileMap = $TileMap if has_node("TileMap") else null
-
+var paused = false
 func _ready() -> void:
-	print(global_position)
+	pause_inst = pause_scene.instantiate()
+	add_child(pause_inst)
+	pause_inst.hide()
 	# Setup level
 	_initialize_level()
 	
@@ -83,6 +86,17 @@ func get_whirlpool_pairs() -> Dictionary:
 	"""
 	return {}
 
+func _process(_delta):
+	
+	if Input.is_action_just_pressed("pause") and paused == false:
+		pause_inst.show()
+		get_tree().paused = true
+		paused = true
+		
+	elif Input.is_action_just_pressed("pause") and paused == true:
+		pause_inst.hide()
+		get_tree().paused = false
+		paused = false
 # Helper functions for level design
 #
 #func add_firefly_at(pos: Vector2) -> void:

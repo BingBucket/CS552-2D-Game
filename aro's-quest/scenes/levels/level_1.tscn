@@ -5,9 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://knbsdjpngmg5" path="res://audio/music/aroquest_level_theme.mp3" id="3_nsrm0"]
 
 [node name="level_1_NEW" type="Node2D"]
+process_mode = 3
 script = ExtResource("1")
 
 [node name="Collectibles" type="TileMapLayer" parent="."]
+process_mode = 1
 position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAADAAIAAAAAAAAACAAEAAMAAAAAAAAACAA=")
 tile_set = ExtResource("2_oc4kc")
@@ -24,4 +26,4 @@ stream = ExtResource("3_nsrm0")
 autoplay = true
 
 [connection signal="body_entered" from="Collectibles/Firefly" to="Collectibles/Firefly" method="_on_body_entered"]
-[connection signal="body_entered" from="Collectibles/@Area2D@23357" to="Collectibles/@Area2D@23357" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectibles/@Area2D@58427" to="Collectibles/@Area2D@58427" method="_on_body_entered"]
