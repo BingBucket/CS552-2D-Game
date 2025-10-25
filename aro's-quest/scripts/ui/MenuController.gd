@@ -14,7 +14,7 @@ class_name MenuController
 @onready var main_menu_button: Button = $ColorRect/VBoxContainer/MainMenuButton if has_node("ColorRect/VBoxContainer/MainMenuButton") else null
 @onready var quit_button: Button = $ColorRect/VBoxContainer/QuitButton if has_node("ColorRect/VBoxContainer/QuitButton") else null
 @onready var timer_label: Label = $ColorRect/VBoxContainer/TimerLabel if has_node("ColorRect/VBoxContainer/TimerLabel") else null
-
+@onready var final_timer_label: Label = $ColorRect/VBoxContainer/FinalTimerLabel if has_node("ColorRect/VBoxContainer/TimerLabel") else null
 func _ready() -> void:
 	# Connect buttons that exist
 	if start_button:
@@ -33,6 +33,8 @@ func _ready() -> void:
 		quit_button.pressed.connect(quit_game)
 	if timer_label:
 		timer_label.text = "Time: " + GameManager.play_time
+	if final_timer_label:
+		final_timer_label.text = "Time: " + GameManager.final_time
 	# Setup based on menu type
 	_setup_menu()
 	print(global_position)

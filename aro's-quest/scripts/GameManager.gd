@@ -23,6 +23,9 @@ var time_remaining: float = 0.0
 var timer_active: bool = false
 #play_time during a level
 var play_time: String = ''
+var total_time: int = 0
+var time_start: int = 0
+var final_time
 
 ## Whirlpool Registry
 var whirlpool_pairs: Dictionary = {}  # pair_id -> Array[WhirlpoolPortal]
@@ -39,6 +42,7 @@ signal game_won()
 func _ready() -> void:
 	# Initialize game state
 	print("game manager exists")
+	time_start = Time.get_unix_time_from_system()
 	reset_game_state()
 
 func _process(delta: float) -> void:
@@ -128,6 +132,9 @@ func _complete_game() -> void:
 	game_won.emit()
 	# TODO: Show final victory screen with total stats
 	print("Congratulations! Game completed!")
+	var time_end = Time.get_unix_time_from_system()
+	total_time = int(time_end - time_start)
+	final_time = str(format_total_time(total_time))
 
 ## Life Management
 
@@ -272,3 +279,8 @@ func toggle_invincibility() -> void:
 	"""Debug: Toggle player invincibility."""
 	# TODO: Set flag on player
 	pass
+func format_total_time(seconds: int) -> String:
+	var hours = seconds / 3600
+	var minutes = (seconds % 3600) / 60
+	var secs = seconds % 60
+	return "%02d:%02d:%02d" % [hours, minutes, secs]

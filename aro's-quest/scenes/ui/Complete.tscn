@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt2vbc4rpin46"]
+[gd_scene load_steps=2 format=3 uid="uid://cttt8f5ooypn0"]
 
-[ext_resource type="Script" uid="uid://crdluuyvnjmfp" path="res://scripts/ui/MenuController.gd" id="1"]
-[ext_resource type="AudioStream" uid="uid://m7fai8o7pk3t" path="res://audio/sfx/Player Win SFX.wav" id="2_k3dxi"]
+[ext_resource type="Script" uid="uid://crdluuyvnjmfp" path="res://scripts/ui/MenuController.gd" id="1_426s2"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1")
+script = ExtResource("1_426s2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -36,10 +35,10 @@ theme_override_constants/separation = 15
 [node name="Title" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "LEVEL COMPLETE!"
+text = "Congratulations! You have won!"
 horizontal_alignment = 1
 
-[node name="FinalTimerLabel" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="TimerLabel" type="Label" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Time:"
 horizontal_alignment = 1
@@ -60,6 +59,3 @@ text = "Restart Level"
 [node name="MainMenuButton" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_k3dxi")
